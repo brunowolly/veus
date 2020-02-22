@@ -123,18 +123,48 @@ EXIT;
 ```docker-compose exec app php artisan db:seed```
 
 Observação:
-Será criado usuário Bruno, com e-mail=brunowolly@gmail.com e senha=senha123. Você precisará disso para gerar token que permitirá acessar a api.
+Será criado usuário Bruno, com email=brunowolly@gmail.com e password=senha123. Você precisará disso para gerar token que permitirá acessar a api.
 
 ### Gerar nossa chave para jwt
 
 ```docker-compose exec app php artisan jwt:secret```
 
-Dentro do Postman
-jwt
-localhost:8081/api/auth/login
+### Acessar Postman ou aplicativo de testes de api de sua preferência
 
-copiar accesss_token gerado
+### Acessar a URL
+```localhost:8081/api/auth/login```
 
-na requisição,
-escolher type Bearer Token
-colar no campo token o token gerado acima
+### no boddy, é preciso passar o email e password definidos na criação do usuário
+Faça a requisição
+
+O retorno será um json parecido com este, copie o conteúdo do campo "access_token"
+```
+{
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4MVwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4MjM0OTgyMywiZXhwIjoxNTgyMzUzNDIzLCJuYmYiOjE1ODIzNDk4MjMsImp0aSI6IkFMRktheWN1MzRsYzJkYTUiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.Ka2VTnmGs_vimvMVB_AKmWZDASjb8R1m8846__Lf7po",
+    "token_type": "bearer",
+    "expires_in": 3600
+}
+```
+
+### abra uma nova aba para efetuar requisiçes da api
+é necessáiro escolher "Authorization", selecionaro Type como "Bearer Token", cole o conteúdo do access_token no campo token
+
+### As ROTAS
+
+```
+GET    - http://localhost:[porta]/api/v1/products/
+GET    - http://localhost:[porta]/api/v1/products/{id}
+POST   - http://localhost:[porta]/api/v1/products/
+PUT    - http://localhost:[porta]/api/v1/products/{id}
+DELETE - http://localhost:[porta]/api/v1/products/{id}
+
+GET    - http://localhost:[porta]/api/v1/brands/
+GET    - http://localhost:[porta]/api/v1/brands/{id}
+POST   - http://localhost:[porta]/api/v1/brands/
+PUT    - http://localhost:[porta]/api/v1/brands/{id}
+DELETE - http://localhost:[porta]/api/v1/brands/{id}
+
+GET localhost:8081/api/v2/teste
+
+```
+
