@@ -11,25 +11,12 @@
 |
  */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 Route::group(['middleware' => 'apiJwt', 'prefix' => 'v1'], function () {
-    // Route::get('users', 'Api\\UserController@index');
-    /* ROTAS "/brands/" */
 
-    /*
-     * Isto será acessível via http://localhost:[porta]/brands/
-     * O arquivo da classe será: app/Http/Controllers/BrandController.php
-     */
-    // Route::resource('brands', 'BrandController',
-    //     ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
-
-/* ROTAS "/gerentes/" */
+    /* ROTAS "/api/v1/brands/" */
     Route::group(['prefix' => 'brands'], function () {
         /*
-         * Isto será acessível via http://localhost:[porta]/gerentes/
-         * O arquivo da classe será: app/Http/Controllers/GerenteController.php
+         * Isto será acessível via http://localhost:[porta]/api/v1/brands/
          */
         Route::get('/', 'BrandController@index');
         Route::get('/{id}', 'BrandController@show');
@@ -39,15 +26,26 @@ Route::group(['middleware' => 'apiJwt', 'prefix' => 'v1'], function () {
 
     });
 
-    Route::resource('products', 'ProductController',
-        ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+    /* ROTAS "/api/v1/products/" */
+
+    Route::group(['prefix' => 'products'], function () {
+        /*
+         * Isto será acessível via http://localhost:[porta]/api/v1/products/
+         */
+        Route::get('/', 'ProductController@index');
+        Route::get('/{id}', 'ProductController@show');
+        Route::post('/', 'ProductController@store');
+        Route::put('/{id}', 'ProductController@update');
+        Route::delete('/{id}', 'ProductController@destroy');
+
+    });
 
 });
-
+//ROTA para recuperação do token
 Route::post('auth/login', 'Api\\AuthController@login');
-// Route::post('logout', 'AuthController@logout');
-// Route::post('refresh', 'AuthController@refresh');
-//Route::post('me', 'AuthController@me');
+
+
+//teste de versão de rota
 Route::group(['prefix' => 'v2'], function () {
     Route::get('teste', function () {
         return "teste";

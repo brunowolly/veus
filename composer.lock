@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "271e54df2bfc60b4062e48392c0c9152",
@@ -328,24 +328,24 @@
         },
         {
             "name": "fideloper/proxy",
-            "version": "4.2.2",
+            "version": "4.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fideloper/TrustedProxy.git",
-                "reference": "790194d5d3da89a713478875d2e2d05855a90a81"
+                "reference": "ec38ad69ee378a1eec04fb0e417a97cfaf7ed11a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fideloper/TrustedProxy/zipball/790194d5d3da89a713478875d2e2d05855a90a81",
-                "reference": "790194d5d3da89a713478875d2e2d05855a90a81",
+                "url": "https://api.github.com/repos/fideloper/TrustedProxy/zipball/ec38ad69ee378a1eec04fb0e417a97cfaf7ed11a",
+                "reference": "ec38ad69ee378a1eec04fb0e417a97cfaf7ed11a",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "^5.0|^6.0|^7.0",
+                "illuminate/contracts": "^5.0|^6.0|^7.0|^8.0",
                 "php": ">=5.4.0"
             },
             "require-dev": {
-                "illuminate/http": "^5.0|^6.0|^7.0",
+                "illuminate/http": "^5.0|^6.0|^7.0|^8.0",
                 "mockery/mockery": "^1.0",
                 "phpunit/phpunit": "^6.0"
             },
@@ -378,7 +378,7 @@
                 "proxy",
                 "trusted proxy"
             ],
-            "time": "2019-12-20T13:11:11+00:00"
+            "time": "2020-02-22T01:51:47+00:00"
         },
         {
             "name": "filp/whoops",
@@ -1214,16 +1214,16 @@
         },
         {
             "name": "mpociot/laravel-apidoc-generator",
-            "version": "4.2.4",
+            "version": "4.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mpociot/laravel-apidoc-generator.git",
-                "reference": "f5878cf1eba1ace3be276a308b76d1ddd950cdbb"
+                "reference": "b08d17970e3b6753255937030dff5792c5f2e9fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mpociot/laravel-apidoc-generator/zipball/f5878cf1eba1ace3be276a308b76d1ddd950cdbb",
-                "reference": "f5878cf1eba1ace3be276a308b76d1ddd950cdbb",
+                "url": "https://api.github.com/repos/mpociot/laravel-apidoc-generator/zipball/b08d17970e3b6753255937030dff5792c5f2e9fd",
+                "reference": "b08d17970e3b6753255937030dff5792c5f2e9fd",
                 "shasum": ""
             },
             "require": {
@@ -1235,7 +1235,7 @@
                 "league/flysystem": "^1.0",
                 "mpociot/documentarian": "^0.3.0",
                 "mpociot/reflection-docblock": "^1.0.1",
-                "nunomaduro/collision": "^3.0",
+                "nunomaduro/collision": "^3.0|^4.0",
                 "php": ">=7.2.0",
                 "ramsey/uuid": "^3.8",
                 "symfony/var-exporter": "^4.0|^5.0"
@@ -1286,7 +1286,7 @@
                 "documentation",
                 "laravel"
             ],
-            "time": "2020-02-15T22:30:51+00:00"
+            "time": "2020-02-22T00:59:27+00:00"
         },
         {
             "name": "mpociot/reflection-docblock",
