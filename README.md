@@ -168,3 +168,25 @@ GET localhost:8081/api/v2/teste
 
 ```
 
+### Sorting
+
+http://localhost:[porta]/api/v1/products/?sort=price,DESC
+
+### Total Itens Por Página
+
+http://localhost:[porta]/api/v1/products/?p=2
+
+### Query Builder
+
+http://localhost:[porta]/api/v1/products/?q=B
+
+### É possível combinar os parâmetros de Total por página, Sorting e Query Builder
+
+http://localhost:[porta]/api/v1/products/?q=B&sort=price,ASC&p=2
+
+### Pagination
+
+Feita automaticamente por paginate() do Laravel
+
+
+
