@@ -13,8 +13,10 @@
 
 ### instale e faça update das dependencias
 
-```composer install --no-dev```
-```composer update --no-dev```
+```bash
+composer install --no-dev
+composer update --no-dev
+```
 
 ### Em seguida, utilize a imagem do composer para montar os diretórios que você precisará para seu projeto Laravel e evite os custos de instalar o Composer globalmente
 
