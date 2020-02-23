@@ -3,32 +3,32 @@
 
 ## Siga os passos
 
-### Faça o download do projeto em seu console
+### 1 Faça o download do projeto em seu console
 
 ```git clone https://github.com/brunowolly/veus.git```
 
-### Acesse o diretório do projeto
+### 2 Acesse o diretório do projeto
 
 ```cd veus```
 
-### instale e faça update das dependencias
+### 3 instale e faça update das dependencias
 
 ```bash
 composer install --no-dev
 composer update --no-dev
 ```
 
-### Em seguida, utilize a imagem do composer para montar os diretórios que você precisará para seu projeto Laravel e evite os custos de instalar o Composer globalmente
+### 4 Em seguida, utilize a imagem do composer para montar os diretórios que você precisará para seu projeto Laravel e evite os custos de instalar o Composer globalmente
 
 ```docker run --rm -v $(pwd):/app composer install```
 
 Observação:os comandos que estiverem com caminho ~/veus devem ser adaptados para sua pasta local
 
-### Como passo final, defina as permissões no diretório do projeto para que ele seja propriedade do seu usuário não root
+### 5 Como passo final, defina as permissões no diretório do projeto para que ele seja propriedade do seu usuário não root
 
 ```sudo chown -R $USER:$USER ~/veus```
 
-### Crie seu arquivo .env com o comando nano em seguida, copie o conteúdo 
+### 6 Crie seu arquivo .env com o comando nano em seguida, copie o conteúdo 
 ```nano .env```
 ``` bash
 APP_NAME=Laravel
@@ -79,31 +79,31 @@ MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
 MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 ```
 
-### inciando os containers, criando volumes e conectando as resdes configuradas no docker-compose.yml e Dockerfile
+### 7 inciando os containers, criando volumes e conectando as resdes configuradas no docker-compose.yml e Dockerfile
 
 ```docker-compose up -d```
 
-### você poderá listar os containers criados com o comando abaixo
+### 8 você poderá listar os containers criados com o comando abaixo
 
 ```docker ps```
 
-### Gerar a chave para o aplicativo Laravel
+### 9 Gerar a chave para o aplicativo Laravel
 
 ```docker-compose exec app php artisan key:generate```
 
-### coloque as configuções em cache para aumentar a velocidade de carregamento do aplicativo
+### 10 coloque as configuções em cache para aumentar a velocidade de carregamento do aplicativo
 
 ```docker-compose exec app php artisan config:cache```
 
-### crie seu usuário MySql
+### 11 crie seu usuário MySql
 
 ```docker-compose exec db bash```
 
-### Agora, dentro do container, faça o login na conta root, ao solicitar a senha, utilize veus
+### 12 Agora, dentro do container, faça o login na conta root, ao solicitar a senha, utilize veus
 
 ```mysql -u root -p```
 
-### execute
+### 13 execute
 
 ```sql
 GRANT ALL ON veus.* TO 'veus'@'%' IDENTIFIED BY 'veus';
@@ -111,31 +111,31 @@ FLUSH PRIVILEGES;
 EXIT;
 ```
 
-### por fim, saia do container
+### 14 por fim, saia do container
 
 ```exit```
 
-### Agora, precisamos executar o migrate do laravel para criar as tabelas
+### 15 Agora, precisamos executar o migrate do laravel para criar as tabelas
 
 ```docker-compose exec app php artisan migrate```
 
-### Vamos criar o primeiro usuário configurado no seed
+### 16 Vamos criar o primeiro usuário configurado no seed
 
 ```docker-compose exec app php artisan db:seed```
 
 Observação:
 Será criado usuário Bruno, com email=brunowolly@gmail.com e password=senha123. Você precisará disso para gerar token que permitirá acessar a api.
 
-### Gerar nossa chave para jwt
+### 17 Gerar nossa chave para jwt
 
 ```docker-compose exec app php artisan jwt:secret```
 
-### Acessar Postman ou aplicativo de testes de api de sua preferência
+### 18 Acessar Postman ou aplicativo de testes de api de sua preferência
 
-### Acessar a URL
+### 19 Acessar a URL
 ```localhost:8081/api/auth/login```
 
-### no boddy, é preciso passar o email e password definidos na criação do usuário
+### 20 no boddy, é preciso passar o email e password definidos na criação do usuário
 Faça a requisição
 
 O retorno será um json parecido com este, copie o conteúdo do campo "access_token"
@@ -147,10 +147,10 @@ O retorno será um json parecido com este, copie o conteúdo do campo "access_to
 }
 ```
 
-### abra uma nova aba para efetuar requisiçes da api
+### 21 abra uma nova aba para efetuar requisiçes da api
 é necessáiro escolher "Authorization", selecionaro Type como "Bearer Token", cole o conteúdo do access_token no campo token
 
-### As ROTAS
+### 22 As ROTAS
 
 ```
 GET    - http://localhost:[porta]/api/v1/products/
@@ -169,25 +169,40 @@ GET localhost:8081/api/v2/teste
 
 ```
 
-### Sorting
+### 23 Cadastrando uma nova marca
+
+Tenha certeza de estar com TOKEN (passos 19, 20 e 21)
+O unico parâmetro requerido é "name"
+POST - http://localhost:8081/api/v1/brands/?name=B.BRAUN
+
+
+## 24 Cadastrando um novo produto
+
+Tenha certeza de estar com TOKEN (passos 19, 20 e 21)
+Os parâmetros para cadastro do produto são: name, price, amount e brand_id
+
+POST - localhost:8081/api/v1/products?name=Gaze Top&price=1.3&amount=10&brand_id=2
+
+
+### 25 Sorting
 
 http://localhost:[porta]/api/v1/products/?sort=price,DESC
 Obs: sort:campo,TIPO
 Tipo pode ser: ASC ou DESC. Caso esse parâmetro seja omitido, a ordenação será ASC.
 
-### Total Itens Por Página
+### 26 Total Itens Por Página
 
 http://localhost:[porta]/api/v1/products/?p=2
 
-### Query Builder
+### 27 Query Builder
 
 http://localhost:[porta]/api/v1/products/?q=B
 
-### É possível combinar os parâmetros de Total por página, Sorting e Query Builder
+### 28 É possível combinar os parâmetros de Total por página, Sorting e Query Builder
 
 http://localhost:[porta]/api/v1/products/?q=B&sort=price,ASC&p=2
 
-### Pagination
+### 29vPagination
 
 Feita automaticamente por paginate() do Laravel
 
