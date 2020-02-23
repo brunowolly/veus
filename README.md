@@ -119,7 +119,7 @@ EXIT;
 
 ```docker-compose exec app php artisan migrate```
 
-### 16 Vamos criar o primeiro usuário configurado no seed
+### 16 Vamos criar o primeiro usuário e alguns produtos
 ```
 docker-compose exec app composer dumpautoload
 docker-compose exec app php artisan db:seed
