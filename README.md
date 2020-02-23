@@ -148,6 +148,7 @@ O retorno será um json parecido com este, copie o conteúdo do campo "access_to
 ```
 
 ### 21 abra uma nova aba para efetuar requisiçes da api
+
 é necessáiro escolher "Authorization", selecionaro Type como "Bearer Token", cole o conteúdo do access_token no campo token
 
 ### 22 As ROTAS
@@ -171,24 +172,24 @@ GET localhost:8081/api/v2/teste
 
 ### 23 Cadastrando uma nova marca
 
-Tenha certeza de estar com TOKEN (passos 19, 20 e 21)
-O unico parâmetro requerido é "name"
-POST - http://localhost:8081/api/v1/brands/?name=B.BRAUN
+Tenha certeza de estar com TOKEN (passos 19, 20 e 21)  
+O unico parâmetro requerido é "name"  
+POST - http://localhost:8081/api/v1/brands/?name=B.BRAUN  
 
 
 ## 24 Cadastrando um novo produto
 
-Tenha certeza de estar com TOKEN (passos 19, 20 e 21)
-Os parâmetros para cadastro do produto são: name, price, amount e brand_id
+Tenha certeza de estar com TOKEN (passos 19, 20 e 21)  
+Os parâmetros para cadastro do produto são: name, price, amount e brand_id  
 
-POST - localhost:8081/api/v1/products?name=Gaze Top&price=1.3&amount=10&brand_id=2
+POST - localhost:8081/api/v1/products?name=Gaze Top&price=1.3&amount=10&brand_id=2  
 
 
 ### 25 Sorting
 
-http://localhost:[porta]/api/v1/products/?sort=price,DESC
-Obs: sort:campo,TIPO
-Tipo pode ser: ASC ou DESC. Caso esse parâmetro seja omitido, a ordenação será ASC.
+http://localhost:[porta]/api/v1/products/?sort=price,DESC  
+Obs: sort:campo,TIPO  
+Tipo pode ser: ASC ou DESC. Caso esse parâmetro seja omitido, a ordenação será ASC.  
 
 ### 26 Total Itens Por Página
 
