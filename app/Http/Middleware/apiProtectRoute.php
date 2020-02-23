@@ -4,6 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
 use JWTAuth;
 
 class apiProtectRoute extends BaseMiddleware
@@ -22,20 +26,25 @@ class apiProtectRoute extends BaseMiddleware
             if (! $user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
-    
-        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-    
-            return response()->json(['token_expired'], $e->getStatusCode());
-    
-        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-    
-            return response()->json(['token_invalid'], $e->getStatusCode());
-    
-        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-    
-            return response()->json(['token_absent'], $e->getStatusCode());
-    
-        }
+
+        } catch (TokenExpiredException $e) {
+
+            return response()->json(['success' => false ,'message'=>'token_expired'], 404);
+
+        } catch (TokenInvalidException $e) {
+
+            return response()->json(['success' => false, 'message'=>'token_invalid'], 404);
+
+        } catch (JWTException $e) {
+
+            return response()->json(['success' => false, 'message'=>'token_absent'], 404);
+
+        } catch (TokenBlacklistedException $e) {
+
+        return response()->json(['success' => false,  'message'=>'token_invalid'], 404);
+
+    }
+
         return $next($request);
 
     }

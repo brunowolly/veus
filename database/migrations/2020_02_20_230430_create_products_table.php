@@ -15,14 +15,13 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 100);
-            $table->float('price')->nullable();
-            $table->integer('amount')->nullable();
-            $table->unsignedBigInteger('brand_id')->unsigned();
+            $table->string('name');
+            $table->float('price');
+            $table->integer('amount');
+            $table->string('brand');
             $table->timestamps();
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
         });
-        
+
     }
 
     /**
@@ -32,9 +31,7 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::dropIfExists('brands');
         Schema::dropIfExists('products');
-        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
     }
 }

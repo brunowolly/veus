@@ -13,18 +13,6 @@
 
 Route::group(['middleware' => 'apiJwt', 'prefix' => 'v1'], function () {
 
-    /* ROTAS "/api/v1/brands/" */
-    Route::group(['prefix' => 'brands'], function () {
-        /*
-         * Isto será acessível via http://localhost:[porta]/api/v1/brands/
-         */
-        Route::get('/', 'BrandController@index');
-        Route::get('/{id}', 'BrandController@show');
-        Route::post('/', 'BrandController@store');
-        Route::put('/{id}', 'BrandController@update');
-        Route::delete('/{id}', 'BrandController@destroy');
-
-    });
 
     /* ROTAS "/api/v1/products/" */
 
@@ -39,6 +27,8 @@ Route::group(['middleware' => 'apiJwt', 'prefix' => 'v1'], function () {
         Route::delete('/{id}', 'ProductController@destroy');
 
     });
+
+    Route::post('auth/logout', 'Api\\AuthController@logout');
 
 });
 //ROTA para recuperação do token

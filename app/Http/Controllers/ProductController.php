@@ -17,17 +17,16 @@ class ProductController extends Controller
     {
         $input = $request->all();
 
-        $product_retorno = [];
         $products = Product::search($input)
             ->filter($input)
             ->sort($input)
             ->paginates($input);
 
-        
         return response()->json([
             'success' => true,
-            'data' => $products ,
+            'data' => $products,
         ]);
+
     }
 
     /**
@@ -44,7 +43,9 @@ class ProductController extends Controller
             $product->fill($request->all());
             $product->save();
 
-            return response()->json($product, 201);
+            return response()->json([
+                'success' => true,
+                'data' => $product], 201);
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => 'Bad request',
@@ -63,21 +64,9 @@ class ProductController extends Controller
     {
         $product = Product::where('id', $id)->first();
         if ($product) {
-            $brand = $product->brand()->first();
-            //   dd($criativos);
-
-        }
-        if ($product) {
             return response()->json([
-
-                'id' => $product->id,
-                'name' => $product->name,
-                'price' => $product->price,
-                'amount' => $product->amount,
-                'brand' => ['id' => $brand->id,
-                    'name' => $brand->name,
-
-                ],
+                'success' => true,
+                'data' => $product,
             ]);
         } else {
             return response()->json([

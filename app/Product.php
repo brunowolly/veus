@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+
 use App\Brand;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +15,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'price', 'brand_id', 'amount',
+        'name', 'price', 'amount', 'brand',
     ];
     protected $hidden = ['created_at', 'updated_at'];
 
@@ -27,7 +28,6 @@ class Product extends Model
 
     }
 
-
     public function scopeSearch($query, $inputs)
     {
 
@@ -35,27 +35,32 @@ class Product extends Model
             return $query;
         }
 
-
-
         return $query->where(function ($query) use ($inputs) {
             $query
-                 ->orWhere('name', 'like', '%' . $inputs['q'] . '%')
-                 ->orWhere('price', 'like', '%' . $inputs['q'] . '%')
-                 ->orWhere('amount', 'like', '%' . $inputs['q'] . '%')
-                ->orwhereHas('brand', function ($query) use($inputs) {
-                    $query->where('name', 'like', '%'.$inputs['q'].'%' );
-                })->get();
+                ->orWhere('name', 'like', '%' . $inputs['q'] . '%')
+                ->orWhere('price', 'like', '%' . $inputs['q'] . '%')
+                ->orWhere('amount', 'like', '%' . $inputs['q'] . '%')
+                ->orWhere('brand', 'like', '%' . $inputs['q'] . '%');
+
         });
     }
 
     public function scopeFilter($query, $inputs)
     {
-        if (!isset($inputs['filter'])) {
-            return $query;
-        }
 
-        $filter = explode(':', $inputs['filter']);
-        return $query->where($filter[0], $filter[1]);
+        $parts = explode(':', $inputs['filter']);
+
+        if (count($parts) == 3) {
+
+            if ($parts[1] == 'LIKE' || $parts[1] == 'like') {
+                return $query->where($parts[0], 'LIKE', '%' . $parts[2] . '%');
+            } else if ($parts[1] == 'IN' || $parts[1] == 'in') {
+                return $query->whereIn($parts[0], explode(',', $parts[2]));
+            } else {
+                return $query->where($parts[0], $parts[1], $parts[2]);
+            }
+        } else $query;
+
     }
 
     public function scopeSort($query, $inputs)
@@ -67,13 +72,14 @@ class Product extends Model
         $orderby = 'ASC';
         $sort = explode(',', $inputs['sort']);
         //limitar possíveis valores invalidos
-        if (isset($sort[1]) && (stristr($sort[1],'ASC') || stristr($sort[1],'DESC')) ) {
+        if (isset($sort[1]) && (stristr($sort[1], 'ASC') || stristr($sort[1], 'DESC'))) {
             $orderby = $sort[1];
-        } else return $query;
+        } else {
+            return $query;
+        }
 
         return $query->orderBy($sort[0], $orderby);
     }
-
 
     public function scopePaginates($query, $inputs)
     {
@@ -83,7 +89,6 @@ class Product extends Model
         }
 
         $totalpages = $inputs['p'];
-
 
         return $query->paginate($totalpages);
     }
