@@ -181,8 +181,7 @@ POST - http://localhost:8081/api/v1/brands/?name=B.BRAUN
 
 Tenha certeza de estar com TOKEN (passos 19, 20 e 21)  
 Os parâmetros para cadastro do produto são: name, price, amount e brand_id  
-
-POST - localhost:8081/api/v1/products?name=Gaze Top&price=1.3&amount=10&brand_id=2  
+POST - http://localhost:8081/api/v1/products?name=Gaze Top&price=1.3&amount=10&brand_id=2  
 
 
 ### 25 Sorting
