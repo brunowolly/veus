@@ -201,10 +201,10 @@ valor = qualquer valor possível para o campo
 caso o filtro no satisfaça alguma das condições (3 parâmetros), ele sera ignorado.  
 
 Exemplo de filtro  
-Buncando registros onde a marca possua B no nome 
-localhost:8081/api/v1/products/?filter=brand:LIKE:B. BRAUN
+Buncando registros onde a marca possua B no nome   
+localhost:8081/api/v1/products/?filter=brand:LIKE:B
 
-Buncando registros que possuem estoque maior que 5
+Buncando registros que possuem estoque maior que 5  
 localhost:8081/api/v1/products/?filter=amount:>:5  
 
 
