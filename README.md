@@ -214,5 +214,7 @@ Feita automaticamente por paginate() do Laravel
 
 # PHPMyAdmin
 
-Acesse via URL:http://localhost:8000/
+Acesse via URL:http://localhost:8000/  
+user:veus  
+password: veus  
 
