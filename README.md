@@ -22,7 +22,7 @@ composer update --no-dev
 
 ```docker run --rm -v $(pwd):/app composer install```
 
-Observação:os comandos que estivem com caminho ~/veus devem ser adaptados para sua pasta local
+Observação:os comandos que estiverem com caminho ~/veus devem ser adaptados para sua pasta local
 
 ### Como passo final, defina as permissões no diretório do projeto para que ele seja propriedade do seu usuário não root
 
