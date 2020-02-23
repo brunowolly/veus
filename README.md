@@ -195,5 +195,7 @@ http://localhost:[porta]/api/v1/products/?q=B&sort=price,ASC&p=2
 
 Feita automaticamente por paginate() do Laravel
 
+# PHPMyAdmin
 
+Acesse via URL:http://localhost:8000/
 
