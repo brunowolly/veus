@@ -120,8 +120,10 @@ EXIT;
 ```docker-compose exec app php artisan migrate```
 
 ### 16 Vamos criar o primeiro usuário configurado no seed
-
-```docker-compose exec app php artisan db:seed```
+```
+docker-compose exec app composer dumpautoload
+docker-compose exec app php artisan db:seed
+```
 
 Observação:
 Será criado usuário Bruno, com email=brunowolly@gmail.com e password=senha123. Você precisará disso para gerar token que permitirá acessar a api.
