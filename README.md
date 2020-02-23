@@ -160,49 +160,36 @@ POST   - http://localhost:[porta]/api/v1/products/
 PUT    - http://localhost:[porta]/api/v1/products/{id}
 DELETE - http://localhost:[porta]/api/v1/products/{id}
 
-GET    - http://localhost:[porta]/api/v1/brands/
-GET    - http://localhost:[porta]/api/v1/brands/{id}
-POST   - http://localhost:[porta]/api/v1/brands/
-PUT    - http://localhost:[porta]/api/v1/brands/{id}
-DELETE - http://localhost:[porta]/api/v1/brands/{id}
-
 GET localhost:8081/api/v2/teste
 
 ```
 
-### 23 Cadastrando uma nova marca
+## 23 Cadastrando um novo produto
 
 Tenha certeza de estar com TOKEN (passos 19, 20 e 21)  
-O unico parâmetro requerido é "name"  
-POST - http://localhost:8081/api/v1/brands/?name=B.BRAUN  
+Os parâmetros para cadastro do produto são: name, price, amount e brand  
+POST - http://localhost:8081/api/v1/products?name=Gaze Top&price=1.3&amount=10&brand=B.BRAUN  
 
 
-## 24 Cadastrando um novo produto
-
-Tenha certeza de estar com TOKEN (passos 19, 20 e 21)  
-Os parâmetros para cadastro do produto são: name, price, amount e brand_id  
-POST - http://localhost:8081/api/v1/products?name=Gaze Top&price=1.3&amount=10&brand_id=2  
-
-
-### 25 Sorting
+### 24 Sorting
 
 http://localhost:[porta]/api/v1/products/?sort=price,DESC  
 Obs: sort:campo,TIPO  
 Tipo pode ser: ASC ou DESC. Caso esse parâmetro seja omitido, a ordenação será ASC.  
 
-### 26 Total Itens Por Página
+### 25 Total Itens Por Página
 
 http://localhost:[porta]/api/v1/products/?p=2
 
-### 27 Query Builder
+### 26 Query Builder
 
 http://localhost:[porta]/api/v1/products/?q=B
 
-### 28 É possível combinar os parâmetros de Total por página, Sorting e Query Builder
+### 27 É possível combinar os parâmetros de Total por página, Sorting e Query Builder
 
 http://localhost:[porta]/api/v1/products/?q=B&sort=price,ASC&p=2
 
-### 29vPagination
+### 28  Pagination
 
 Feita automaticamente por paginate() do Laravel
 
