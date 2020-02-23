@@ -172,6 +172,8 @@ GET localhost:8081/api/v2/teste
 ### Sorting
 
 http://localhost:[porta]/api/v1/products/?sort=price,DESC
+Obs: sort:campo,TIPO
+Tipo pode ser: ASC ou DESC. Caso esse parâmetro seja omitido, a ordenação será ASC.
 
 ### Total Itens Por Página
 
