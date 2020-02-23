@@ -191,7 +191,24 @@ http://localhost:[porta]/api/v1/products/?q=B
 
 http://localhost:[porta]/api/v1/products/?q=B&sort=price,ASC&p=2
 
-### 28  Pagination
+### 28  Filtro
+
+url/?filter=campo:condição:valor  
+campo = Pode ser qualquer campo da tabela products (id, name, price, amount, brand)  
+condição = LIKE, IN, =, >, <,  <>, >=, <=  
+valor = qualquer valor possível para o campo  
+  
+caso o filtro no satisfaça alguma das condições (3 parâmetros), ele sera ignorado.  
+
+Exemplo de filtro  
+Buncando registros onde a marca possua B no nome 
+localhost:8081/api/v1/products/?filter=brand:LIKE:B. BRAUN
+
+Buncando registros que possuem estoque maior que 5
+localhost:8081/api/v1/products/?filter=amount:>:5  
+
+
+### 29  Pagination
 
 Feita automaticamente por paginate() do Laravel
 
