@@ -22,11 +22,7 @@ class Product extends Model
     /**
      * Get the Gerente record associated with the Product.
      */
-    public function brand()
-    {
-        return $this->hasOne(Brand::class, 'id', 'brand_id');
 
-    }
 
     public function scopeSearch($query, $inputs)
     {
@@ -47,6 +43,9 @@ class Product extends Model
 
     public function scopeFilter($query, $inputs)
     {
+        if (!isset($inputs['filter'])) {
+            return $query;
+        }
 
         $parts = explode(':', $inputs['filter']);
 
@@ -83,7 +82,7 @@ class Product extends Model
 
     public function scopePaginates($query, $inputs)
     {
-        $totalpages = 1;
+        $totalpages = 5;
         if (!isset($inputs['p'])) {
             return $query->paginate($totalpages);
         }
