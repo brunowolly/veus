@@ -32,7 +32,7 @@ Observação:os comandos que estiverem com caminho ~/veus devem ser adaptados pa
 
 ```cp .env.example .env```
 
-### 7. inciando os containers, criando volumes e conectando as resdes configuradas no docker-compose.yml e Dockerfile
+### 7. inciando os containers, criando volumes e conectando as redes configuradas no docker-compose.yml e Dockerfile
 
 ```docker-compose up -d```
 
